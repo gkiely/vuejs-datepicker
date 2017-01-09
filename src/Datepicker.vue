@@ -9,6 +9,17 @@
         :placeholder="placeholder"
         readonly>
 
+        <div class="icon-close" 
+          v-show="currDate && selectedDate"
+          @click="removeDate">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="14.4 14.4 151.2 151.2" enable-background="new 14.4 14.4 151.2 151.2" xml:space="preserve">
+          <path d="M90,14.4c-41.8,0-75.6,33.8-75.6,75.6s33.8,75.6,75.6,75.6s75.6-33.8,75.6-75.6S131.8,14.4,90,14.4z M133.1,117.5
+            l-15.6,15.6L90,105.6l-27.5,27.5l-15.6-15.6L74.4,90L46.9,62.5l15.6-15.6L90,74.4l27.5-27.5l15.6,15.6L105.6,90
+            C105.6,90,133.1,117.5,133.1,117.5z"/>
+          </svg>
+        </div>
+
         <!-- Day View -->
         <div class="calendar" v-show="showDayView" v-bind:style="calendarStyle">
             <header>
@@ -675,6 +686,14 @@ export default {
       this.currDate = new Date(date.getFullYear(), date.getMonth(), 1).getTime()
     },
 
+    /**
+     * Remove the date from the input
+     */
+    removeDate () {
+      this.selectedDate = null
+      this.currDate = null
+    },
+
     init () {
       if (this.value) {
         this.setValue(this.value)
@@ -816,5 +835,28 @@ $width = 300px
     .year
         width 33.333%
 
+.datepicker
+  display: inline-block
+
+.icon-close
+  color: #a9a9a9
+
+.icon-close:hover
+  color: #969696
+  color: #848484
+
+.icon-close svg
+  cursor: pointer
+  display: inline-block
+  position: absolute
+  right: .25em
+  top: 0
+  bottom: 0
+  margin: auto
+  width: .7em
+  height: .7em
+  stroke-width: 0
+  stroke: currentColor
+  fill: currentColor
 
 </style>
